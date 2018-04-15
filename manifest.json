@@ -1,6 +1,6 @@
 {
   "name": "show-ip",
-  "description": "Display your IP address",
+  "description": "View your IP address",
   "version": "1.0",
   "homepage_url": "https://github.com/TwinProduction/firefox-extension-show-ip",
   "manifest_version": 2,
