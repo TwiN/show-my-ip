@@ -11,6 +11,9 @@ window.onload = function() {
 };
 
 
+document.getElementById("refresh-btn").addEventListener("click", fetchClientIP, false);
+
+
 function fetchClientIP() {
   callAjax("https://twinnation.org/api/ip", displayContent);
 }
@@ -30,9 +33,9 @@ function callAjax(url, callback) {
 
 
 function displayContent(content) {
+  var ip = 'ERROR';
   if (content && content.length <= MAX_IP_LENGTH) {
-    document.getElementById("ip-address").innerHTML = content;
-  } else {
-    document.getElementById("ip-address").innerHTML = "ERROR";
+    ip = content;
   }
+  document.getElementById("ip-address").innerHTML = ip;
 }
