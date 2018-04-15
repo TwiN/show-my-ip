@@ -1,0 +1,33 @@
+body {
+  padding: 10px;
+  overflow: hidden;
+}
+
+#desc {
+  text-align: center;
+  padding-top: 0;
+  margin: 0;
+}
+
+#ip-address {
+  text-align: center;
+  -moz-user-select: text;
+  user-select: text;
+  cursor: text;
+}
+
+#refresh-btn {
+  font-family: Lucida Sans Unicode;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}
+
+#refresh-btn:hover {
+  transform: scale(1.2);
+}
