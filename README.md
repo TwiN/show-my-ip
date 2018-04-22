@@ -2,8 +2,8 @@
 
 Add-on link: https://addons.mozilla.org/en-US/firefox/addon/show-ip/
 
-Main API: https://twinnation.org/api/ip
-FALLBACK API: http://ip-api.com/line?fields=query
+- Main API: https://twinnation.org/api/ip
+- FALLBACK API: http://ip-api.com/line?fields=query
 
 
 ## TODO List
