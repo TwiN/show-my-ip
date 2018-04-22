@@ -12,7 +12,6 @@
     "128": "data/icon-128.png"
   },
   "browser_action": {
-    "browser_style": true,
     "default_title": "Display your IP address",
     "default_popup": "data/index.html",
     "default_icon": {
