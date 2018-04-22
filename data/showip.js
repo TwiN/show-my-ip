@@ -5,9 +5,12 @@
  */
 const MAX_IP_LENGTH = 45;
 
+const MAIN_API_URL = "https://twinnation.org/api/ip";
+const FALLBACK_API_URL = "http://ip-api.com/line?fields=query";
+
 
 window.onload = function() {
-  fetchClientIP();
+    fetchClientIP();
 };
 
 
@@ -15,27 +18,42 @@ document.getElementById("refresh-btn").addEventListener("click", fetchClientIP, 
 
 
 function fetchClientIP() {
-  callAjax("https://twinnation.org/api/ip", displayContent);
+    callAjax(MAIN_API_URL, handler, false);
 }
 
 
-function callAjax(url, callback) {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.withCredentials = true;
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      callback(xmlhttp.responseText);
+function callAjax(url, callback, isFallback) {
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                callback(xhr.responseText, isFallback);
+            } else {
+                callback(null, isFallback);
+            }
+        }
     }
-  }
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
+    xhr.open("GET", url, true);
+    xhr.send();
 }
 
 
-function displayContent(content) {
-  var ip = 'ERROR';
-  if (content && content.length <= MAX_IP_LENGTH) {
-    ip = content;
-  }
-  document.getElementById("ip-address").innerHTML = ip;
+function handler(content, isFallback) {
+    if (content === null && !isFallback) {
+        callAjax(FALLBACK_API_URL, handler, true);
+    } else {
+        displayContent(content, isFallback);
+    }
 }
+
+
+function displayContent(content, isFallback) {
+    var ip = 'ERROR';
+    if (content && content.length <= MAX_IP_LENGTH) {
+        ip = content;
+    }
+    ip = isFallback ? "<span style='color:red'>" + ip + "</span>" : ip;
+    document.getElementById("ip-address").innerHTML = ip;
+}
+
