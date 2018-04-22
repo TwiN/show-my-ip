@@ -21,7 +21,6 @@
   },
   "permissions": [
     "https://twinnation.org/api/ip",
-    "webRequest",
     "http://ip-api.com/line?fields=query",
     "webRequest"
   ]
