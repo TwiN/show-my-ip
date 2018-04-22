@@ -1,6 +1,7 @@
-# firefox-extension-show-ip
+# show-my-ip
 
-Add-on link: https://addons.mozilla.org/en-US/firefox/addon/show-ip/
+Add-on link (Firefox): https://addons.mozilla.org/en-US/firefox/addon/show-ip/
+Add-on link (Chrome): https://chrome.google.com/webstore/detail/show-my-ip/njjhkglmjpklhkfchpjdjjnfjjmeghho
 
 - Main API: https://twinnation.org/api/ip
 - FALLBACK API: http://ip-api.com/line?fields=query
