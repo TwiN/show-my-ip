@@ -5,7 +5,7 @@
  */
 const MAX_IP_LENGTH = 45;
 
-const MAIN_API_URL = "https://twinnation.org/api/ip";
+const MAIN_API_URL = "https://twinnation.org/api/v1/ip";
 const FALLBACK_API_URL = "http://ip-api.com/line?fields=query";
 
 
