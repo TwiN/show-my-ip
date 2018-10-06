@@ -1,7 +1,7 @@
 /**
  * The maximum length for an IPv6 is 39, but there is an exception
- * for IPv4-mapped IPv6. Although the likelyhood of such an event
- * happening, it's better to consider it than ignore it.
+ * for IPv4-mapped IPv6. Although the likelihood of such an event
+ * happening is extremely low, considering it is better than not.
  */
 const MAX_IP_LENGTH = 45;
 
@@ -23,24 +23,23 @@ function fetchClientIP() {
 
 
 function callAjax(url, callback, isFallback) {
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
                 callback(xhr.responseText, isFallback);
             } else {
                 callback(null, isFallback);
             }
         }
-    }
+    };
     xhr.open("GET", url, true);
     xhr.send();
 }
 
 
 function handler(content, isFallback) {
-    if (content === null && !isFallback) {
+    if (!content && !isFallback) {
         callAjax(FALLBACK_API_URL, handler, true);
     } else {
         displayContent(content, isFallback);
@@ -49,11 +48,20 @@ function handler(content, isFallback) {
 
 
 function displayContent(content, isFallback) {
-    var ip = 'ERROR';
+    let ip = 'ERROR';
     if (content && content.length <= MAX_IP_LENGTH) {
-        ip = content;
+        ip = sanitize(content);
     }
-    ip = isFallback ? "<span style='color:red'>" + ip + "</span>" : ip;
+    ip = isFallback ? `<span style='color:red'>${ip}</span>` : ip;
     document.getElementById("ip-address").innerHTML = ip;
 }
 
+
+/**
+ * Removes characters that shouldn't be in an IPv4 or an IPv6
+ * @param s String to sanitize
+ * @returns sanitized string
+ */
+function sanitize(s) {
+    return s.replace(/[^0-9:a-fA-F.]/g, '');
+}
