@@ -23,13 +23,21 @@ body {
   text-align: center;
 }
 
-#refresh-btn {
+#refresh-btn, #copy-btn {
   cursor: pointer;
   height: 20px;
   width: 20px;
   margin-top: 0;
+  padding-right: 5px;
+  padding-left: 5px;
 }
+
+
 
 #refresh-btn:hover {
   transform: scale(1.2);
+}
+
+#copy-btn:hover {
+	transform: scale(1.2);
 }

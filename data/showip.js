@@ -15,6 +15,7 @@ window.onload = function() {
 
 
 document.getElementById("refresh-btn").addEventListener("click", fetchClientIP, false);
+document.getElementById("copy-btn").addEventListener("click", copyToClipboard, false);
 
 
 function fetchClientIP() {
@@ -52,8 +53,15 @@ function displayContent(content, isFallback) {
     if (content && content.length <= MAX_IP_LENGTH) {
         ip = sanitize(content);
     }
-    ip = isFallback ? `<span style='color:red'>${ip}</span>` : ip;
+    document.getElementById("ip-address").style.color = isFallback ? "red" : "black";
     document.getElementById("ip-address").innerHTML = ip;
+}
+
+
+function copyToClipboard() {
+    let ip = document.getElementById("ip-address").innerHTML;
+	console.log("ip=", ip);
+    navigator.clipboard.writeText(ip);
 }
 
 
