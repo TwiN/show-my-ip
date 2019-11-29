@@ -54,13 +54,12 @@ function displayContent(content, isFallback) {
         ip = sanitize(content);
     }
     document.getElementById("ip-address").style.color = isFallback ? "red" : "black";
-    document.getElementById("ip-address").innerHTML = ip;
+    document.getElementById("ip-address").innerText = ip;
 }
 
 
 function copyToClipboard() {
-    let ip = document.getElementById("ip-address").innerHTML;
-	console.log("ip=", ip);
+    let ip = document.getElementById("ip-address").innerText;
     navigator.clipboard.writeText(ip);
 }
 
