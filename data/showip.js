@@ -5,26 +5,25 @@
  */
 const MAX_IP_LENGTH = 45;
 
-const MAIN_API_URL = "https://twinnation.org/api/v1/ip";
+const MAIN_API_URL = "https://twin.sh/api/v1/ip";
 const FALLBACK_API_URL = "http://ip-api.com/line?fields=query";
-
 
 window.onload = function() {
     fetchClientIP();
 };
 
-
 document.getElementById("refresh-btn").addEventListener("click", fetchClientIP, false);
 document.getElementById("copy-btn").addEventListener("click", copyToClipboard, false);
-
 
 function fetchClientIP() {
     callAjax(MAIN_API_URL, handler, false);
 }
 
-
 function callAjax(url, callback, isFallback) {
     let xhr = new XMLHttpRequest();
+    if (!isFallback) {
+        xhr.timeout = 1000;
+    }
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -38,7 +37,6 @@ function callAjax(url, callback, isFallback) {
     xhr.send();
 }
 
-
 function handler(content, isFallback) {
     if (!content && !isFallback) {
         callAjax(FALLBACK_API_URL, handler, true);
@@ -46,7 +44,6 @@ function handler(content, isFallback) {
         displayContent(content, isFallback);
     }
 }
-
 
 function displayContent(content, isFallback) {
     let ip = 'ERROR';
@@ -57,12 +54,10 @@ function displayContent(content, isFallback) {
     document.getElementById("ip-address").innerText = ip;
 }
 
-
 function copyToClipboard() {
     let ip = document.getElementById("ip-address").innerText;
     navigator.clipboard.writeText(ip);
 }
-
 
 /**
  * Removes characters that shouldn't be in an IPv4 or an IPv6
