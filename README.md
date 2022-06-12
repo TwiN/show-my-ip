@@ -1,4 +1,6 @@
 # show-my-ip
+![Mozilla Add-on](https://img.shields.io/amo/users/show-ip)
+
 Add-on link (Firefox): https://addons.mozilla.org/en-US/firefox/addon/show-ip/
 
 Add-on link (Chrome): https://chrome.google.com/webstore/detail/show-my-ip/njjhkglmjpklhkfchpjdjjnfjjmeghho
